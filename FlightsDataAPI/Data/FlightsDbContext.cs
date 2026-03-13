@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FlightsDataAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlightsDataAPI.Data;
 public class FlightsDbContext : DbContext
