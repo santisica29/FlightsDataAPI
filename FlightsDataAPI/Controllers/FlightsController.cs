@@ -1,5 +1,6 @@
 ﻿using FlightsDataAPI.Interfaces;
 using FlightsDataAPI.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlightsDataAPI.Controllers;
@@ -17,13 +18,23 @@ public class FlightsController : ControllerBase
     [HttpGet]
     public ActionResult<List<Flight>> GetAllFlights()
     {
-        return Ok(_flightService.GetAllFlights());
+        var result = _flightService.GetAllFlights();
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
     public ActionResult<Flight> GetFlightById(int id)
     {
-        return Ok(_flightService.GetFlightById(id));
+        var result = _flightService.GetFlightById(id);
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
     }
 
     [HttpPost]
@@ -35,12 +46,22 @@ public class FlightsController : ControllerBase
     [HttpPut("{id}")]
     public ActionResult<Flight> UpdateFlight(int id, Flight updatedFlight)
     {
-        return Ok(_flightService.UpdateFlight(id, updatedFlight));
+        var result = _flightService.UpdateFlight(id, updatedFlight);
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public ActionResult<string> DeleteFlight(int id)
     {
-        return Ok(_flightService.DeleteFlight(id));
+        var result = _flightService.DeleteFlight(id);
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
     }
 }
